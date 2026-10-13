@@ -5,9 +5,9 @@ Setup:
     cp .env.example .env   # then paste your API key into .env
 
 Usage:
-    python chat.py "Write a haiku about Oregon rain"
-    python chat.py --model claude-opus-5-5 "Write a haiku about Oregon rain"
-    python chat.py -m claude-haiku-5-5 "Quick question..."
+    python terminal.py "Write a haiku about Oregon rain"
+    python terminal.py --model claude-opus-5-5 "Write a haiku about Oregon rain"
+    python terminal.py -m claude-haiku-5-5 "Quick question..."
 """
 
 import argparse
@@ -42,7 +42,9 @@ response = client.messages.create(
     messages=[{"role": "user", "content": prompt}],
 )
 
-print(response.content[0].text)
+# The response can contain several blocks (e.g. a "thinking" block before the
+# answer), so print only the text blocks.
+print("".join(block.text for block in response.content if block.type == "text"))
 print(
     f"\n[{args.model} | tokens: {response.usage.input_tokens} in / {response.usage.output_tokens} out]",
     file=sys.stderr,
