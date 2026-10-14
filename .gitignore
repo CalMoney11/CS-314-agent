@@ -14,3 +14,7 @@ env/
 .vscode/
 .idea/
 .DS_Store
+
+# Don't want to send to github yet
+# mostly md files 
+agent-system/
