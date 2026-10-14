@@ -18,3 +18,7 @@ env/
 # Don't want to send to github yet
 # mostly md files 
 agent-system/
+
+# never want to commit 
+credentials.json
+tokens/
