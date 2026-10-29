@@ -127,11 +127,6 @@ Sent as one Slack message with clear headers so Calvin can skip sections:
 
 4) NO FOLLOW-UP NEEDED
    • [FYI items, one line each]
-
-5) WEATHER — Eugene, OR
-   • [high/low, conditions, rain chance]
-
-6) CODE NEWS (3–5 items, one line each + link)
 ```
 
 ### Status vocabulary (used everywhere)

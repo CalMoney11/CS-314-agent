@@ -91,23 +91,9 @@ kyle-agents/
 - **UOmail:** UO runs on Microsoft 365. Microsoft Graph usually needs university admin consent for third-party apps, so the practical route is an Outlook inbox rule that forwards to one of your Gmails. Calvin replies from UOmail himself, and the draft is placed in Gmail with a note. Check that UO policy allows auto-forwarding first.
 - **Slack:** create a **personal Slack workspace** (e.g., "Calvin HQ") with a bot that DMs you. Don't put a personal bot in CloudQuant's Slack.
 
----
-
-## 3. Model tiering & cost
-
-API pricing per million tokens, from Anthropic's pricing page (input / output):
-
-| Job | Model | Price | Why |
-|---|---|---|---|
-| Triage / classify (~100/day) | **Haiku 5.5** | $0.10 / $0.50 | High volume, simple decision, latency-sensitive |
-| Drafts (≤15/day) | **Sonnet 5.5** | $2 / $10 | Voice-matching quality matters |
-| Kyle's brief + edge-case judgment | **Sonnet 5.5** | $2 / $10 | Good enough. Kyle's routing is code. |
-| Rare hard calls (optional) | Opus 5.5 | $4 / $20 | Only if Sonnet's judgment proves insufficient |
-
 **Cost levers:**
 - **Prompt caching:** the soul, identity, user, and learnings files are identical every call. Cache reads cost a fraction of normal input (10% on Haiku; 5% on Sonnet 5.5 and Opus 5.5).
 - **Batch API (50% off):** use it for the after-hours run that builds the morning brief.
-- **Free data sources:** weather from the National Weather Service API and code news from the Hacker News API cost nothing. Avoid Claude's web search tool for these, which costs $10 per 1,000 searches.
 
 ## 4. The 4 Stages of Trust
 
@@ -122,9 +108,4 @@ Your rule "nothing is ever sent" holds at **every** stage. Stage 3 is adapted ac
 
 **Weekly review (Kyle → Calvin, Sunday brief section):** metrics (accuracy, acceptance rate, pings sent, cost), new `learnings.md` rules, unsubscribe suggestions, and stage recommendation.
 
----
-
-## 6. Open items (marked `[[ ]]` in the files)
-5. **Weather location:** Eugene, OR? yes
-6. **Code news:** which topics or sources? Default is Hacker News top stories plus your languages.
 7. **Morning brief time:** 6:15 AM PT by default (before the internship block).
