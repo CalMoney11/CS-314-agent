@@ -9,6 +9,7 @@ __pycache__/
 .venv/
 venv/
 env/
+/tokens
 
 # Editors / OS
 .vscode/
