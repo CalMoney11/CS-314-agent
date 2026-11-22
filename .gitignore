@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+credentials.json
 
 # Python
 __pycache__/
@@ -9,6 +10,7 @@ __pycache__/
 .venv/
 venv/
 env/
+/tokens
 
 # Editors / OS
 .vscode/
