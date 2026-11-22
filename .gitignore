@@ -23,4 +23,4 @@ env/
 
 # never want to commit 
 credentials.json
-tokens/
+tokens/.pytest_cache/
