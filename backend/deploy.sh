@@ -19,7 +19,7 @@ gcloud auth print-access-token >/dev/null 2>&1 || { echo "Run: gcloud auth login
 
 env_value() {  # value of KEY from .env, quotes stripped; empty if missing
   [[ -f "$ENV_FILE" ]] || return 0
-  grep -E "^$1=" "$ENV_FILE" | tail -n1 | cut -d= -f2- | sed -e 's/[[:space:]]#.*$//' -e 's/[[:space:]]*$//' -e 's/^["'\'']//' -e 's/["'\'']$//'
+  { grep -E "^$1=" "$ENV_FILE" || true; } | tail -n1 | cut -d= -f2- | sed -e 's/[[:space:]]#.*$//' -e 's/[[:space:]]*$//' -e 's/^["'\'']//' -e 's/["'\'']$//'
 }
 
 # --- APP_API_TOKEN: the password the phone uses. Generated once, kept in .env.
@@ -78,6 +78,11 @@ for s in app-api-token anthropic-api-key canvas-api-token google-tokens-json; do
   gcloud secrets add-iam-policy-binding "$s" --member="serviceAccount:$RUNTIME_SA" \
     --role=roles/secretmanager.secretAccessor >/dev/null
 done
+
+# Newer projects don't let the default service account build from source; grant the
+# role Google documents for `gcloud run deploy --source` (idempotent).
+gcloud projects add-iam-policy-binding "$PROJECT" --member="serviceAccount:$RUNTIME_SA" \
+  --role=roles/run.builder --condition=None >/dev/null
 
 echo "Deploying $SERVICE to $REGION..."
 # The service is public at the network level; every /api route checks APP_API_TOKEN.
