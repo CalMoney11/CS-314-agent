@@ -10,7 +10,8 @@
     "ios": {
       "icon": "./assets/expo.icon",
       "bundleIdentifier": "com.calmoney.cs314agent",
-      "supportsTablet": false
+      "supportsTablet": false,
+      "appleTeamId": "7PK5685X92"
     },
     "android": {
       "adaptiveIcon": {
